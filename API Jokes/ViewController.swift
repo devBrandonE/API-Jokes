@@ -8,11 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class SourcesViewController: UITableViewController {
+    var sources = [[String: String]]()
+    //let apiKey = "000000000000"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.title = "Food Sources"
+        let query = "https://www.datakick.org/api/items/"
     }
 
 
