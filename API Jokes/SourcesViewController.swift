@@ -9,12 +9,12 @@
 import UIKit
 
 class SourcesViewController: UITableViewController {
-    var sources = [[String: String]]()
+    var recipes = [[String: String]]()
     //let apiKey = "000000000000"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Food Sources"
+        self.title = "Food Recipes"
         let query = "https://www.datakick.org/api/items/"
         DispatchQueue.global(qos: .userInitiated).async {
             [unowned self] in
@@ -50,7 +50,7 @@ class SourcesViewController: UITableViewController {
             let fiber = ingredients["size"].intValue
             let sugars = ingredients["size"].intValue
             let protein = ingredients["size"].intValue
-            let source = ["gtin14" : gtin14,
+            let foodInformation = ["gtin14" : gtin14,
                           "brand_name" : brand_name,
                           "name" : name, "size" : size,
                           "serving_size" : serving_size,
@@ -65,7 +65,7 @@ class SourcesViewController: UITableViewController {
                           "fiber" : fiber,
                           "sugars" : sugars,
                           "protein" : protein] as [String : Any]
-            sources.append(source as! [String : String])
+            recipes.append(foodInformation as! [String : String])
             DispatchQueue.main.async {
                 [unowned self] in
                 self.tableView.reloadData()
@@ -79,6 +79,18 @@ class SourcesViewController: UITableViewController {
                          preferredStyle: .actionSheet)
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
     present(alert, animated: true, completion: nil)
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return recipes.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let foodInformation = recipes[indexPath.row]
+        cell.textLabel?.text = foodInformation["name"]
+        cell.detailTextLabel?.text = foodInformation["description"]
+        return cell
     }
 }
 
