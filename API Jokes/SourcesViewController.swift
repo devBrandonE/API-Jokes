@@ -74,11 +74,14 @@ class SourcesViewController: UITableViewController {
     }
     
     func loadError() {
-    let alert = UIAlertController(title: "Loading Error",
-                                message: "There was a problem loading the food ingredients",
-                         preferredStyle: .actionSheet)
-    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-    present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {
+           [unowned self] in
+           let alert = UIAlertController(title: "Loading Error",
+                                       message: "There was a problem loading the food ingredients",
+                                preferredStyle: .actionSheet)
+           alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
