@@ -2,22 +2,23 @@
 //  ViewController.swift
 //  API Jokes
 //
-//  Created by Brandon Escobar on 2/6/20.
+//  Created by Brandon Escobar on 2/11/20.
 //  Copyright © 2020 Brandon Escobar. All rights reserved.
 //
 
 import UIKit
 
-class SourcesViewController: UITableViewController {
+class IngredientsViewController: UITableViewController {
     
+    var information = [[String: String]]()
     var recipes = [[String: String]]()
     var dataNumbers = [[String: Int]]()
-    //let apiKey = "000000000000"
+    let apiKey = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Food Recipes"
-        let query = "https://www.datakick.org/api/items/"
+        let query = "https://www.datakick.org/api/items/" + apiKey
         DispatchQueue.global(qos: .userInitiated).async {
             [unowned self] in
             if let url = URL(string: query) {
@@ -50,24 +51,26 @@ class SourcesViewController: UITableViewController {
             let fiber = ingredients["size"].intValue
             let sugars = ingredients["size"].intValue
             let protein = ingredients["size"].intValue
+            let url = ingredients["url"].stringValue
             let foodInformation = ["gtin14" : gtin14,
                                "brand_name" : brand_name,
                                      "name" : name,
                                      "size" : size,
                              "serving_size" : serving_size,
-                   "servings_per_container" : servings_per_container]
+                   "servings_per_container" : servings_per_container,
+                                      "url" : url]
                 let foodInformationNumbers =
-                               ["calories" : calories,
-                          "fat_calories" : fat_calories,
-                                   "fat" : fat,
-                         "saturated_fat" : saturated_fat,
-                             "trans_fat" : trans_fat,
-                           "cholesterol" : cholesterol,
-                                "sodium" : sodium,
-                          "carbohydrate" : carbohydrate,
-                                 "fiber" : fiber,
-                                "sugars" : sugars,
-                               "protein" : protein]
+                                ["calories" : calories,
+                             "fat_calories" : fat_calories,
+                                      "fat" : fat,
+                            "saturated_fat" : saturated_fat,
+                                "trans_fat" : trans_fat,
+                              "cholesterol" : cholesterol,
+                                   "sodium" : sodium,
+                             "carbohydrate" : carbohydrate,
+                                    "fiber" : fiber,
+                                   "sugars" : sugars,
+                                  "protein" : protein]
             recipes.append(foodInformation)
             dataNumbers.append(foodInformationNumbers)
             DispatchQueue.main.async {
@@ -89,12 +92,12 @@ class SourcesViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recipes.count
+        return information.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let foodInformation = recipes[indexPath.row]
+        let foodInformation = information[indexPath.row]
         cell.textLabel?.text = foodInformation["name"]
         cell.detailTextLabel?.text = foodInformation["description"]
         return cell

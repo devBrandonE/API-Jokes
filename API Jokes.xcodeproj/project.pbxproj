@@ -14,6 +14,7 @@
 		A26AD34323EC734E00882E35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A26AD34223EC734E00882E35 /* Assets.xcassets */; };
 		A26AD34623EC734E00882E35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A26AD34423EC734E00882E35 /* LaunchScreen.storyboard */; };
 		A26AD34E23EC73D900882E35 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26AD34D23EC73D900882E35 /* SwiftyJSON.swift */; };
+		A26AD35023F3109300882E35 /* IngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26AD34F23F3109300882E35 /* IngredientsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		A26AD34523EC734E00882E35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A26AD34723EC734E00882E35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A26AD34D23EC73D900882E35 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		A26AD34F23F3109300882E35 /* IngredientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				A26AD33923EC734B00882E35 /* AppDelegate.swift */,
 				A26AD33B23EC734B00882E35 /* SceneDelegate.swift */,
 				A26AD33D23EC734B00882E35 /* SourcesViewController.swift */,
+				A26AD34F23F3109300882E35 /* IngredientsViewController.swift */,
 				A26AD33F23EC734B00882E35 /* Main.storyboard */,
 				A26AD34223EC734E00882E35 /* Assets.xcassets */,
 				A26AD34423EC734E00882E35 /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A26AD35023F3109300882E35 /* IngredientsViewController.swift in Sources */,
 				A26AD33E23EC734B00882E35 /* SourcesViewController.swift in Sources */,
 				A26AD33A23EC734B00882E35 /* AppDelegate.swift in Sources */,
 				A26AD33C23EC734B00882E35 /* SceneDelegate.swift in Sources */,
