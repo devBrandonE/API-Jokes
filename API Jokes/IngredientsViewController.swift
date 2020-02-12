@@ -17,7 +17,7 @@ class IngredientsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Food Recipes"
+        self.title = "Food Ingredients"
         let query = "https://www.datakick.org/api/items/" + apiKey
         DispatchQueue.global(qos: .userInitiated).async {
             [unowned self] in

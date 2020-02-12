@@ -51,23 +51,23 @@ class SourcesViewController: UITableViewController {
             let sugars = ingredients["size"].intValue
             let protein = ingredients["size"].intValue
             let foodInformation = ["gtin14" : gtin14,
-                               "brand_name" : brand_name,
+                               "bra d_name" : brand_name,
                                      "name" : name,
                                      "size" : size,
                              "serving_size" : serving_size,
                    "servings_per_container" : servings_per_container]
                 let foodInformationNumbers =
-                               ["calories" : calories,
-                          "fat_calories" : fat_calories,
-                                   "fat" : fat,
-                         "saturated_fat" : saturated_fat,
-                             "trans_fat" : trans_fat,
-                           "cholesterol" : cholesterol,
-                                "sodium" : sodium,
-                          "carbohydrate" : carbohydrate,
-                                 "fiber" : fiber,
-                                "sugars" : sugars,
-                               "protein" : protein]
+                                ["calories" : calories,
+                             "fat_calories" : fat_calories,
+                                      "fat" : fat,
+                            "saturated_fat" : saturated_fat,
+                                "trans_fat" : trans_fat,
+                              "cholesterol" : cholesterol,
+                                   "sodium" : sodium,
+                             "carbohydrate" : carbohydrate,
+                                    "fiber" : fiber,
+                                   "sugars" : sugars,
+                                  "protein" : protein]
             recipes.append(foodInformation)
             dataNumbers.append(foodInformationNumbers)
             DispatchQueue.main.async {
@@ -99,5 +99,7 @@ class SourcesViewController: UITableViewController {
         cell.detailTextLabel?.text = foodInformation["description"]
         return cell
     }
+    
+    
 }
 
