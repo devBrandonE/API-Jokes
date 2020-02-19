@@ -11,14 +11,18 @@ import UIKit
 class IngredientsViewController: UITableViewController {
     
     var information = [[String: String]]()
-    var recipes = [[String: String]]()
-    var dataNumbers = [[String: Int]]()
-    let apiKey = ""
+    var recipe = [[String: String]]()
+    var dataNumbers = [[String: String]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //let apiKey = recipe["gtin14"]
+        //print(recipe)
+        let item = recipe.first!
+        let itemNumber = item["gtin14"]!
+        //print(itemNumber)
         self.title = "Food Ingredients"
-        let query = "https://www.datakick.org/api/items/" + apiKey
+        let query = "https://www.datakick.org/api/items/\(itemNumber)"//\(itemNumber)
         DispatchQueue.global(qos: .userInitiated).async {
             [unowned self] in
             if let url = URL(string: query) {
@@ -33,51 +37,52 @@ class IngredientsViewController: UITableViewController {
     }
     
     func parse(json: JSON){
-        for ingredients in json.arrayValue {
-            let gtin14 = ingredients["gtin14"].stringValue// Strings
-            let brand_name = ingredients["brand_name"].stringValue
-            let name = ingredients["name"].stringValue
-            let size = ingredients["size"].stringValue
-            let serving_size = ingredients["serving_size"].stringValue
-            let servings_per_container = ingredients["servings_per_container"].stringValue
-            let calories = ingredients["size"].intValue// Ints
-            let fat_calories = ingredients["size"].intValue
-            let fat = ingredients["size"].intValue
-            let saturated_fat = ingredients["size"].intValue
-            let trans_fat = ingredients["size"].intValue
-            let cholesterol = ingredients["size"].intValue
-            let sodium = ingredients["size"].intValue
-            let carbohydrate = ingredients["size"].intValue
-            let fiber = ingredients["size"].intValue
-            let sugars = ingredients["size"].intValue
-            let protein = ingredients["size"].intValue
-            let url = ingredients["url"].stringValue
-            let foodInformation = ["gtin14" : gtin14,
-                               "brand_name" : brand_name,
-                                     "name" : name,
-                                     "size" : size,
-                             "serving_size" : serving_size,
-                   "servings_per_container" : servings_per_container,
-                                      "url" : url]
+        //print(json)
+        let gtin14 = json["gtin14"].stringValue// Strings
+        let brand_name = json["brand_name"].stringValue
+        let name = json["name"].stringValue
+        let size = json["size"].stringValue
+        let serving_size = json["serving_size"].stringValue
+        let servings_per_container = json["servings_per_container"].stringValue
+        let url = json["url"].stringValue
+        let calories = json["calories"].stringValue// Ints
+        let fat_calories = json["fat_calories"].stringValue
+        let fat = json["fat"].stringValue
+        let saturated_fat = json["saturated_fat"].stringValue
+        let trans_fat = json["trans_fat"].stringValue
+        let cholesterol = json["cholesterol"].stringValue
+        let sodium = json["sodium"].stringValue
+        let carbohydrate = json["carbohydrate"].stringValue
+        let fiber = json["fiber"].stringValue
+        let sugars = json["sugars"].stringValue
+        let protein = json["protein"].stringValue
+        let foodInformation = ["gtin14" : gtin14,
+                           "brand_name" : brand_name,
+                                 "name" : name,
+                                 "size" : size,
+                         "serving_size" : serving_size,
+               "servings_per_container" : servings_per_container,
+                                  "url" : url]
                 let foodInformationNumbers =
-                                ["calories" : calories,
-                             "fat_calories" : fat_calories,
-                                      "fat" : fat,
-                            "saturated_fat" : saturated_fat,
-                                "trans_fat" : trans_fat,
-                              "cholesterol" : cholesterol,
-                                   "sodium" : sodium,
-                             "carbohydrate" : carbohydrate,
-                                    "fiber" : fiber,
-                                   "sugars" : sugars,
-                                  "protein" : protein]
-            recipes.append(foodInformation)
-            dataNumbers.append(foodInformationNumbers)
-            DispatchQueue.main.async {
-                [unowned self] in
-                self.tableView.reloadData()
-            }
+                            ["calories" : calories,
+                         "fat_calories" : fat_calories,
+                                  "fat" : fat,
+                        "saturated_fat" : saturated_fat,
+                            "trans_fat" : trans_fat,
+                          "cholesterol" : cholesterol,
+                               "sodium" : sodium,
+                         "carbohydrate" : carbohydrate,
+                                "fiber" : fiber,
+                               "sugars" : sugars,
+                              "protein" : protein]
+            information.append(foodInformation)
+            information.append(foodInformationNumbers)
+        //print(information)
+        DispatchQueue.main.async {
+            [unowned self] in
+            self.tableView.reloadData()
         }
+        //self.tableView.reloadData()
     }
     
     func loadError() {
@@ -98,8 +103,18 @@ class IngredientsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let foodInformation = information[indexPath.row]
+        //var boi = ""
+        /*
+        for i in foodInformation {
+            boi += foodInformation["name"]!
+        }
+        */
+        print(foodInformation["name"] as Any)
         cell.textLabel?.text = foodInformation["name"]
-        cell.detailTextLabel?.text = foodInformation["description"]
+        cell.textLabel?.text = foodInformation["brand_name"]
+        cell.textLabel?.text = foodInformation["gtin14"]
+        //cell.textLabel?.text = foodNumbers["name"]
+        cell.detailTextLabel?.text = foodInformation["brand_name"]
         return cell
     }
 }

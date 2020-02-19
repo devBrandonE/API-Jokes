@@ -11,8 +11,8 @@ import UIKit
 class SourcesViewController: UITableViewController {
     
     var recipes = [[String: String]]()
-    var dataNumbers = [[String: Int]]()
-    //let apiKey = "000000000000"
+    var dataNumbers = [[String: String]]()
+    var apiNumbers = [[String: String]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,23 +39,25 @@ class SourcesViewController: UITableViewController {
             let size = ingredients["size"].stringValue
             let serving_size = ingredients["serving_size"].stringValue
             let servings_per_container = ingredients["servings_per_container"].stringValue
-            let calories = ingredients["size"].intValue// Ints
-            let fat_calories = ingredients["size"].intValue
-            let fat = ingredients["size"].intValue
-            let saturated_fat = ingredients["size"].intValue
-            let trans_fat = ingredients["size"].intValue
-            let cholesterol = ingredients["size"].intValue
-            let sodium = ingredients["size"].intValue
-            let carbohydrate = ingredients["size"].intValue
-            let fiber = ingredients["size"].intValue
-            let sugars = ingredients["size"].intValue
-            let protein = ingredients["size"].intValue
+            let calories = ingredients["size"].stringValue// Ints
+            let fat_calories = ingredients["size"].stringValue
+            let fat = ingredients["size"].stringValue
+            let saturated_fat = ingredients["size"].stringValue
+            let trans_fat = ingredients["size"].stringValue
+            let cholesterol = ingredients["size"].stringValue
+            let sodium = ingredients["size"].stringValue
+            let carbohydrate = ingredients["size"].stringValue
+            let fiber = ingredients["size"].stringValue
+            let sugars = ingredients["size"].stringValue
+            let protein = ingredients["size"].stringValue
+            let url = ingredients["url"].stringValue
             let foodInformation = ["gtin14" : gtin14,
-                               "bra d_name" : brand_name,
+                               "brand_name" : brand_name,
                                      "name" : name,
                                      "size" : size,
                              "serving_size" : serving_size,
-                   "servings_per_container" : servings_per_container]
+                   "servings_per_container" : servings_per_container,
+                                      "url" : url]
                 let foodInformationNumbers =
                                 ["calories" : calories,
                              "fat_calories" : fat_calories,
@@ -93,13 +95,27 @@ class SourcesViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // This function goes through every part of the
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let foodInformation = recipes[indexPath.row]
+        let foodInformation = recipes[indexPath.row]//foodInformation["gtin14"] is 'String?'
         cell.textLabel?.text = foodInformation["name"]
-        cell.detailTextLabel?.text = foodInformation["description"]
+        cell.detailTextLabel?.text = foodInformation["brand_name"]
         return cell
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let dvc = segue.destination as! IngredientsViewController
+        let index = tableView.indexPathForSelectedRow?.row
+        /*
+        for 1 in recipes.count {
+            if [recipes[index!]] {
+                
+            }
+        }
+        */
+        dvc.recipe = [recipes[index!]]
+        dvc.dataNumbers = [dataNumbers[index!]]
+    }
     
 }
 

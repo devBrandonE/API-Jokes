@@ -52,7 +52,7 @@
                     <navigationItem key="navigationItem" id="71h-YR-KMM">
                         <barButtonItem key="rightBarButtonItem" style="done" id="eZd-iv-ghZ">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="b1K-jn-8bv">
-                                <rect key="frame" x="-23" y="-15" width="92" height="30"/>
+                                <rect key="frame" x="302" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Quit"/>
                             </button>
