@@ -49,15 +49,7 @@
                             <outlet property="delegate" destination="J8F-P9-Bs8" id="3xf-NF-dTc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="71h-YR-KMM">
-                        <barButtonItem key="rightBarButtonItem" style="done" id="eZd-iv-ghZ">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="b1K-jn-8bv">
-                                <rect key="frame" x="302" y="7" width="92" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Quit"/>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="71h-YR-KMM"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fgy-3h-Whe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -84,8 +76,8 @@
         <!--Ingredients View Controller-->
         <scene sceneID="RoN-47-0DI">
             <objects>
-                <tableViewController id="O5T-p9-xu2" customClass="IngredientsViewController" customModule="API_Jokes" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="DgK-Ij-OYj">
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="O5T-p9-xu2" customClass="IngredientsViewController" customModule="API_Jokes" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="DgK-Ij-OYj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -113,7 +105,7 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.54365647009999996" green="1" blue="0.85453673379999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.73817121480000003" green="0.96786765679999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -125,7 +117,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NXo-bS-vtv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1926" y="-52"/>
+            <point key="canvasLocation" x="1887" y="-52"/>
         </scene>
     </scenes>
 </document>

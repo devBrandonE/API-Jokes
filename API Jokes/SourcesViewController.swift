@@ -16,7 +16,7 @@ class SourcesViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Food Recipes"
+        self.title = "List of foods"
         let query = "https://www.datakick.org/api/items/"
         DispatchQueue.global(qos: .userInitiated).async {
             [unowned self] in
@@ -114,7 +114,7 @@ class SourcesViewController: UITableViewController {
         }
         */
         dvc.recipe = [recipes[index!]]
-        dvc.dataNumbers = [dataNumbers[index!]]
+        //dvc.dataNumbers = [dataNumbers[index!]]
     }
     
 }

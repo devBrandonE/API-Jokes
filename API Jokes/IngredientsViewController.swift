@@ -10,7 +10,9 @@ import UIKit
 
 class IngredientsViewController: UITableViewController {
     
-    var information = [[String: String]]()
+    var foodArray = [String]()
+    var foodArrayWhat = [String]()
+    var information = [String: String]()
     var recipe = [[String: String]]()
     var dataNumbers = [[String: String]]()
     
@@ -21,7 +23,7 @@ class IngredientsViewController: UITableViewController {
         let item = recipe.first!
         let itemNumber = item["gtin14"]!
         //print(itemNumber)
-        self.title = "Food Ingredients"
+        self.title = "Food Nutrition"
         let query = "https://www.datakick.org/api/items/\(itemNumber)"//\(itemNumber)
         DispatchQueue.global(qos: .userInitiated).async {
             [unowned self] in
@@ -44,7 +46,7 @@ class IngredientsViewController: UITableViewController {
         let size = json["size"].stringValue
         let serving_size = json["serving_size"].stringValue
         let servings_per_container = json["servings_per_container"].stringValue
-        let url = json["url"].stringValue
+        let url = "https://www.datakick.org/api/items/\(gtin14)"
         let calories = json["calories"].stringValue// Ints
         let fat_calories = json["fat_calories"].stringValue
         let fat = json["fat"].stringValue
@@ -56,15 +58,30 @@ class IngredientsViewController: UITableViewController {
         let fiber = json["fiber"].stringValue
         let sugars = json["sugars"].stringValue
         let protein = json["protein"].stringValue
-        let foodInformation = ["gtin14" : gtin14,
+        foodArray = [name, brand_name, size, serving_size, servings_per_container, calories, fat_calories, fat, saturated_fat, trans_fat, cholesterol, sodium, carbohydrate, fiber, sugars, protein]
+        var count = 0
+        for i in foodArray{
+            if i == ""{
+                foodArray[count] = "Not listed"
+            }
+            count += 1
+        }
+        count = 0
+        foodArrayWhat = ["Name", "Brand name", "Size", "Serving size", "Servings per container", "Calories", "Fat calories", "Fat", "Saturated fat", "Trans fat", "Cholesterol", "Sodium", "Carbohydrate", "Fiber", "Sugars", "Protein"]
+        for var i in foodArray {
+            if i == "" {
+                i = "Not listed"
+            }
+        }
+        let foodInformation = [
+                             //"gtin14" : gtin14,
                            "brand_name" : brand_name,
                                  "name" : name,
                                  "size" : size,
                          "serving_size" : serving_size,
                "servings_per_container" : servings_per_container,
-                                  "url" : url]
-                let foodInformationNumbers =
-                            ["calories" : calories,
+                                //"url" : url,
+                             "calories" : calories,
                          "fat_calories" : fat_calories,
                                   "fat" : fat,
                         "saturated_fat" : saturated_fat,
@@ -75,9 +92,9 @@ class IngredientsViewController: UITableViewController {
                                 "fiber" : fiber,
                                "sugars" : sugars,
                               "protein" : protein]
-            information.append(foodInformation)
-            information.append(foodInformationNumbers)
-        //print(information)
+        information = foodInformation
+        print(foodArray)
+        //print(information.first!)
         DispatchQueue.main.async {
             [unowned self] in
             self.tableView.reloadData()
@@ -102,20 +119,24 @@ class IngredientsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let foodInformation = information[indexPath.row]
         //var boi = ""
         /*
         for i in foodInformation {
             boi += foodInformation["name"]!
         }
         */
-        print(foodInformation["name"] as Any)
-        cell.textLabel?.text = foodInformation["name"]
-        cell.textLabel?.text = foodInformation["brand_name"]
-        cell.textLabel?.text = foodInformation["gtin14"]
-        //cell.textLabel?.text = foodNumbers["name"]
-        cell.detailTextLabel?.text = foodInformation["brand_name"]
+        //print(foodInformation["name"])
+        cell.textLabel?.text = foodArray[indexPath.row]
+        //cell.textLabel?.text = foodArrayWhat["name"]
+        cell.detailTextLabel?.text = foodArrayWhat[indexPath.row]
         return cell
     }
+    /*
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let foodInformation = information
+        let url = URL(string: foodInformation["url"]!)
+        UIApplication.shared.open(url! as URL, options: [:], completionHandler: nil)
+    }
+    */
 }
 
